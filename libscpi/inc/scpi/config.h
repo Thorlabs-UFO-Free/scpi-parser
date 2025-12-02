@@ -194,14 +194,22 @@ extern "C" {
 #define SCPIDEFINE_strncasecmp(s1, s2, l) OUR_strncasecmp((s1), (s2), (l))
 #endif
 
+#ifndef USER_FLOAT_FORMAT_STRING
+#define USER_FLOAT_FORMAT_STRING "%0.3f"
+#endif
+
 #if HAVE_DTOSTRE
 #define SCPIDEFINE_floatToStr(v, s, l) dtostre((double)(v), (s), 6, DTOSTR_PLUS_SIGN | DTOSTR_ALWAYS_SIGN | DTOSTR_UPPERCASE)
 #elif USE_CUSTOM_DTOSTRE
 #define SCPIDEFINE_floatToStr(v, s, l) SCPI_dtostre((v), (s), (l), 6, 0)
 #elif HAVE_SNPRINTF
-#define SCPIDEFINE_floatToStr(v, s, l) snprintf((s), (l), "%0.3f", (v))
+#define SCPIDEFINE_floatToStr(v, s, l) snprintf((s), (l), USER_FLOAT_FORMAT_STRING, (v))
 #else
 #define SCPIDEFINE_floatToStr(v, s, l) SCPI_dtostre((v), (s), (l), 6, 0)
+#endif
+
+#ifndef USER_DOUBLE_FORMAT_STRING
+#define USER_DOUBLE_FORMAT_STRING "%.15lg"
 #endif
 
 #if HAVE_DTOSTRE
@@ -209,7 +217,7 @@ extern "C" {
 #elif USE_CUSTOM_DTOSTRE
 #define SCPIDEFINE_doubleToStr(v, s, l) SCPI_dtostre((v), (s), (l), 15, 0)
 #elif HAVE_SNPRINTF
-#define SCPIDEFINE_doubleToStr(v, s, l) snprintf((s), (l), "%.15lg", (v))
+#define SCPIDEFINE_doubleToStr(v, s, l) snprintf((s), (l), USER_DOUBLE_FORMAT_STRING, (v))
 #else
 #define SCPIDEFINE_doubleToStr(v, s, l) SCPI_dtostre((v), (s), (l), 15, 0)
 #endif
