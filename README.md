@@ -14,6 +14,12 @@ Examples are from several contributors and they are not tested and it is also no
 
 The core library itself is well tested and has more then 93% of the code covered by unit tests and integration tests and tries to be SCPI-99 compliant as much as possible.
 
+UFO-Specific Information
+--------
+When using this SCPI library for a UFO project, exclude the following folders from the build: 
+- libscpi/test
+- examples/
+
 About
 --------
 
