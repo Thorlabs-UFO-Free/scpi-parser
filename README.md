@@ -17,8 +17,8 @@ The core library itself is well tested and has more then 93% of the code covered
 UFO-Specific Information
 --------
 When using this SCPI library for a UFO project, exclude the following folders from the build: 
-- libscpi/test
-- examples/
+- `libscpi/test`
+- `examples/`
 
 About
 --------
